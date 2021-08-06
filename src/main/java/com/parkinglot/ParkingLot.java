@@ -28,6 +28,10 @@ public class ParkingLot {
 //    }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        return parkedPosition.get(parkingTicket);
+        if (parkingTicket.isUsed()){
+            parkingTicket.setUsed();
+            return parkedPosition.get(parkingTicket);
+        }
+        return null;
     }
 }
