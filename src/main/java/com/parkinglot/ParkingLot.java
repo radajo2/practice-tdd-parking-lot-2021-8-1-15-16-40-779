@@ -9,18 +9,23 @@ public class ParkingLot {
 //    private List<Car> cars;
 
     private Map<ParkingTicket, Car> parkedPosition = new HashMap<>();
-
+    private int slotNumber = 0;
+    private int maxSlotNumber = 10;
 //    Ticket 1 -> ALice
 //    Ticket 1 -> Alice
 //    Ticket <-- relationships --> Car
 //    Ticket(car), Car(ticket)
 
     public ParkingTicket park(Car car) {
-        ParkingTicket parkingTicket = new ParkingTicket();
-        parkedPosition.put(parkingTicket, car);
+        if(slotNumber < maxSlotNumber){
+            ParkingTicket parkingTicket = new ParkingTicket();
+            parkedPosition.put(parkingTicket, car);
+            slotNumber++;
 //        this.car = car;
 //        return null;
-        return parkingTicket;
+            return parkingTicket;
+        }
+        return null;
     }
 
 //    public Car fetch(Car car) {
