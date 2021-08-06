@@ -15,7 +15,6 @@ public class ParkingLot {
 //    Ticket <-- relationships --> Car
 //    Ticket(car), Car(ticket)
 
-
     public ParkingTicket park(Car car) {
         ParkingTicket parkingTicket = new ParkingTicket();
         parkedPosition.put(parkingTicket, car);
