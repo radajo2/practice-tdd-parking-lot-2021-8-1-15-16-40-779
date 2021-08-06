@@ -72,17 +72,18 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
-        ParkingTicket ParkingTicket = parkingLot.park(car);
+        ParkingTicket parkingTicket = parkingLot.park(car);
+        parkingLot.fetch(parkingTicket);
 
         //when
-        Car actualCar = parkingLot.fetch(ParkingTicket);
+        Car actualCar = parkingLot.fetch(parkingTicket);
 
         //then
         assertNull(actualCar);
     }
 
     @Test
-    public void should_return_nothing_when_park_given_parking_without_any_position(){
+    public void should_return_nothing_when_park_given_parking_without_any_position_and_a_car(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
