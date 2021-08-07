@@ -19,7 +19,7 @@ public class ParkingLot {
 
     public ParkingTicket park(Car car) {
         if(isFull()){
-            return null;
+            throw new NoAvailablePositionException();
         }
         ParkingTicket parkingTicket = new ParkingTicket();
         parkedPosition.put(parkingTicket, car);
@@ -43,6 +43,4 @@ public class ParkingLot {
     private boolean isFull() {
         return parkedPosition.size() >= capacity;
     }
-
-
 }
