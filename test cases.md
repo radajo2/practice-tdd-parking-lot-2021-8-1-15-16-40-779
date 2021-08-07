@@ -56,7 +56,7 @@
     When fetch the car by standard parking boy  
     Then return car  
 
-[] Case3  
+[x] Case3  
     Given a parking lot, two parked cars, and two parking tickets  
     When fetch twice by standard parking boy  
     Then return the right car
