@@ -5,21 +5,26 @@
     Then return a parking ticket. 
 
 [x] Case2  
-    Given a correct ticket  
+    Given a parking lot, a parked car, and correct ticket  
     When fetch the car 
     Then return car  
 
 [x] Case3  
+    Given a parking lot, two parked cars, and two parking tickets 
+    When fetch twice  
+    Then return the right car
+
+[x] Case4  
     Given a wrong ticket  
     When fetch the car   
     Then return no car
 
-[x] Case4  
+[x] Case5  
     Given a ticket that has already been used  
     When fetch the car  
     Then return no car
 
-[x] Case5  
+[x] Case6  
     Given a parking lot with no space, and a car  
     When park the car
     Then return no parking ticket. 
@@ -39,3 +44,34 @@
     Given a parking lot without any position, and a car  
     When park the car  
     Then return nothing with error message "No available position."  
+
+# Story 3
+[] Case1  
+    Given a parking lot, a car, and standard parking boy  
+    When park the car  
+    Then return a parking ticket.
+
+[] Case2  
+    Given a parking lot, a parked car, a correct ticket, and standard parking boy  
+    When fetch the car
+    Then return car
+
+[] Case3  
+    Given a parking lot, two parked cars, two parking tickets, and standard parking boy
+    When fetch twice  
+    Then return the right car
+
+[] Case4  
+    Given a parking lot, unrecognized ticket, and standard parking boy  
+    When fetch the car  
+    Then return nothing with error message "Unrecognized parking ticket."
+
+[] Case5  
+    Given a parking lot, a used ticket, and standard parking boy  
+    When fetch the car  
+    Then return nothing with error message "Unrecognized parking ticket."
+
+[] Case6  
+    Given a parking lot without any position, a car, and standard parking boy  
+    When park the car  
+    Then return nothing with error message "No available position." 
