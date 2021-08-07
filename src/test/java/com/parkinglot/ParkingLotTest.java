@@ -90,10 +90,10 @@ public class ParkingLotTest {
         }
 
         //when
-        ParkingTicket ParkingTicket = parkingLot.park(car);
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingLot.park(car));
 
         //then
-        assertNull(ParkingTicket);
+        assertEquals("No available position.", exception.getMessage());
     }
 
     //Story 2
