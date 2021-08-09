@@ -3,6 +3,8 @@ package com.parkinglot;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -104,7 +106,7 @@ public class ParkingBoyTest {
 
     //Story 4
     @Test
-    void should_return_ticket_and_park_car_to_first_parking_lot_when_park_given_a_standard_parking_boy_with_two_parking_lots_and_both_with_available_position_and_a_car() {
+    void should_return_park_car_to_first_parking_lot_when_park_given_a_standard_parking_boy_with_two_parking_lots_and_both_with_available_position_and_a_car() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
         Car car = new Car();
@@ -115,5 +117,23 @@ public class ParkingBoyTest {
         //then
         assertNotNull(parkingTicket);
         assertTrue(parkingBoy.getParkingLots().get(0).getParkingSlotPosition().containsKey(parkingTicket));
+    }
+
+    @Test
+    void should_return_park_car_to_second_parking_lot_when_park_given_a_standard_parking_boy_first_parking_lot_is_full_and_a_car() {
+        //given
+        Car car = new Car();
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        List<ParkingTicket> parkingTicket = new LinkedList<>();
+
+        for (int i = 0; i < 10 ; i++) {
+            parkingTicket.add(parkingBoy.park(car));
+        }
+
+        //when
+        ParkingTicket secondParkingLotTicket = parkingBoy.park(car);
+
+        //then
+        assertTrue(parkingBoy.getParkingLots().get(1).getParkingSlotPosition().containsKey(secondParkingLotTicket));
     }
 }
