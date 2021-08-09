@@ -122,8 +122,8 @@ public class ParkingBoyTest {
     @Test
     void should_return_park_car_to_second_parking_lot_when_park_given_a_standard_parking_boy_first_parking_lot_is_full_and_a_car() {
         //given
-        Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        Car car = new Car();
         List<ParkingTicket> parkingTicket = new LinkedList<>();
 
         for (int i = 0; i < 10 ; i++) {
@@ -135,5 +135,21 @@ public class ParkingBoyTest {
 
         //then
         assertTrue(parkingBoy.getParkingLots().get(1).getParkingSlotPosition().containsKey(secondParkingLotTicket));
+    }
+    @Test
+    void should_return_right_car_with_each_ticket_when_fetch_twice_given_standard_parking_boy_parking_lots_parked_cars_and_parking_tickets() {
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        Car aliceCar = new Car();
+        Car bobCar = new Car();
+        ParkingTicket aliceParkingTicket = parkingBoy.park(aliceCar);
+        ParkingTicket bobParkingTicket = parkingBoy.park(bobCar);
+
+        //when
+        Car actualAliceCar = parkingBoy.fetch(aliceParkingTicket);
+        Car actualBobCar = parkingBoy.fetch(bobParkingTicket);
+
+        //then
+        assertEquals(aliceCar, actualAliceCar);
+        assertEquals(bobCar, actualBobCar);
     }
 }
