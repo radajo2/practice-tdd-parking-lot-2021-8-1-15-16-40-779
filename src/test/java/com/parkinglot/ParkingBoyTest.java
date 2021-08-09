@@ -180,4 +180,26 @@ public class ParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
+    @Test
+    void return_error_message_when_park_given_a_standard_parking_boy_two_parking_lots_no_available_parking_slot() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        Car car = new Car();
+        List<ParkingTicket> parkingLotTicketOne = new LinkedList<>();
+        List<ParkingTicket> parkingLotTicketTwo = new LinkedList<>();
+
+        for (int i = 0; i < 10 ; i++) {
+            parkingLotTicketOne.add(parkingBoy.park(car));
+        }
+        for (int i = 0; i < 10 ; i++) {
+            parkingLotTicketTwo.add(parkingBoy.park(car));
+        }
+
+        //when
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(car));
+
+        //then
+        assertEquals("No available position.", exception.getMessage());
+    }
 }
