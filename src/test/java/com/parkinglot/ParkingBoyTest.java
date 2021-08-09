@@ -136,6 +136,7 @@ public class ParkingBoyTest {
         //then
         assertTrue(parkingBoy.getParkingLots().get(1).getParkingSlotPosition().containsKey(secondParkingLotTicket));
     }
+
     @Test
     void should_return_right_car_with_each_ticket_when_fetch_twice_given_standard_parking_boy_parking_lots_parked_cars_and_parking_tickets() {
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
@@ -151,5 +152,18 @@ public class ParkingBoyTest {
         //then
         assertEquals(aliceCar, actualAliceCar);
         assertEquals(bobCar, actualBobCar);
+    }
+
+    @Test
+    void should_throw_exception_when_fetch_given_a_standard_parking_boy_two_parking_lots_unrecognized_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        ParkingTicket unrecognizedParkingTicket = new ParkingTicket();
+
+        //when
+        Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(unrecognizedParkingTicket));
+
+        //then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 }
