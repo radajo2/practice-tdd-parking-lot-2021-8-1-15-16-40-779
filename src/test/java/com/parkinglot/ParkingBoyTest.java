@@ -2,6 +2,8 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
@@ -98,5 +100,20 @@ public class ParkingBoyTest {
 
         //then
         assertEquals("No available position.", exception.getMessage());
+    }
+
+    //Story 4
+    @Test
+    void should_return_ticket_and_park_car_to_first_parking_lot_when_park_given_a_standard_parking_boy_with_two_parking_lots_and_both_with_available_position_and_a_car() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(), new ParkingLot()));
+        Car car = new Car();
+
+        //when
+        ParkingTicket parkingTicket = parkingBoy.park(car);
+
+        //then
+        assertNotNull(parkingTicket);
+        assertTrue(parkingBoy.getParkingLots().get(0).getParkingSlotPosition().containsKey(parkingTicket));
     }
 }
