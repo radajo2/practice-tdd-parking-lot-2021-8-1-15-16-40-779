@@ -5,16 +5,15 @@ import java.util.Map;
 
 public class ParkingLot {
     private final static int DEFAULT_CAPACITY = 10;
-    private Map<ParkingTicket, Car> parkedPosition;
-    private int capacity;
+    private Map<ParkingTicket, Car> parkedPosition = new HashMap<>();;
+    private final int CAPACITY;
 
-    public ParkingLot(){
-        this(DEFAULT_CAPACITY);
+    public ParkingLot(int parkingLotCapacity){
+        this.CAPACITY = parkingLotCapacity;
     }
 
-    public ParkingLot(int capacity){
-        parkedPosition = new HashMap<>();
-        this.capacity = capacity;
+    public ParkingLot(){
+        CAPACITY = DEFAULT_CAPACITY;
     }
 
     public ParkingTicket park(Car car) {
@@ -40,6 +39,18 @@ public class ParkingLot {
     }
 
     private boolean isFull() {
-        return parkedPosition.size() >= capacity;
+        return parkedPosition.size() >= CAPACITY;
+    }
+
+    public Map<ParkingTicket, Car> getParkingSlotPosition() {
+        return parkedPosition;
+    }
+
+    public boolean isSlotAvailable() {
+        return parkedPosition.size() < CAPACITY;
+    }
+
+    public boolean isRelated(ParkingTicket parkingTicket) {
+        return parkedPosition.containsKey(parkingTicket);
     }
 }
