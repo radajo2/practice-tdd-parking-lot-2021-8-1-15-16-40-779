@@ -1,10 +1,10 @@
 package com.parkinglot;
 
-public class StandardParkingBoy {
+public class ParkingBoy {
 
     ParkingLot parkingLot;
 
-    public StandardParkingBoy(ParkingLot parkingLot){
+    public ParkingBoy(ParkingLot parkingLot){
         this.parkingLot = parkingLot;
     }
 
